@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21C52" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Koleksi" representedClassName="Koleksi" syncable="YES">
+        <attribute name="foto" optional="YES" attributeType="Binary"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isBorrowed" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="judul" optional="YES" attributeType="String"/>
+        <attribute name="pencipta" optional="YES" attributeType="String"/>
+        <relationship name="pinjam" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Peminjaman" inverseName="koleksi" inverseEntity="Peminjaman"/>
+    </entity>
+    <entity name="Peminjaman" representedClassName="Peminjaman" syncable="YES">
+        <attribute name="max_kembali" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="tgl_pinjam" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="koleksi" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Koleksi" inverseName="pinjam" inverseEntity="Koleksi"/>
+        <relationship name="peminjam" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="pinjam" inverseEntity="User"/>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES">
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="password" optional="YES" attributeType="String"/>
+        <attribute name="username" optional="YES" attributeType="String"/>
+        <relationship name="pinjam" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Peminjaman" inverseName="peminjam" inverseEntity="Peminjaman"/>
+    </entity>
+    <elements>
+        <element name="User" positionX="140.7109985351562" positionY="-169.1163940429688" width="128" height="103"/>
+        <element name="Koleksi" positionX="368.56787109375" positionY="-39.17166137695312" width="128" height="133"/>
+        <element name="Peminjaman" positionX="142.131591796875" positionY="128.9877319335938" width="128" height="103"/>
+    </elements>
+</model>
